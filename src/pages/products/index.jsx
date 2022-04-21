@@ -1,19 +1,38 @@
-import { Box } from "@chakra-ui/react"
-import { useState } from "react"
-import ProductCard from "../../component/productCard"
+import { Box, Flex } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import ProductCard from "../../component/productCard";
+import axiosInstance from "../../lib/api";
 
 const productPage = () => {
-    const [productList, setProductList] = useState([])
+  const [productList, setProductList] = useState([]);
 
-    const fetchProduct = () => {
+  const fetchProduct = async () => {
+    try {
+      const res = await axiosInstance.get("/products/");
 
+      setProductList(res.data.result);
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    return(
-        <Box>
-            <ProductCard/>
-        </Box>
-    )
-}
+  const renderProducts = () => {
+    return productList.map((val) => {
+      return (
+        <ProductCard
+          image_url={val.image_url}
+          productName={val.product_name}
+          price={val.price}
+        />
+      );
+    });
+  };
 
-export default productPage
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+
+  return <Flex flexWrap="wrap">{renderProducts()}</Flex>;
+};
+
+export default productPage;
