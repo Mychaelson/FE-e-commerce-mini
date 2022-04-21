@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
-const CartItem = () => {
+const CartItem = ({ imageUrl, productName, price, quantity }) => {
   return (
     <Grid templateColumns="repeat(7, 1fr)" my={4}>
       <GridItem w="100%" display="flex" alignItems="center">
@@ -19,15 +19,16 @@ const CartItem = () => {
           objectFit="cover"
           boxSize="120px"
           borderRadius={8}
+          src={imageUrl}
           fallbackSrc={"https://via.placeholder.com/120"}
         />
       </GridItem>
       <GridItem w="100%" colSpan={2} display="flex" alignItems="center">
         <Flex direction="column">
-          <Text fontWeight="medium">Product</Text>
-          <Text color="gray.600" fontSize="sm">
+          <Text fontWeight="medium">{productName || "product"}</Text>
+          {/* <Text color="gray.600" fontSize="sm">
             Category
-          </Text>
+          </Text> */}
         </Flex>
       </GridItem>
 
@@ -41,7 +42,9 @@ const CartItem = () => {
         alignItems="center"
         justifyContent="center"
       >
-        <Text fontWeight="medium">Rp. 10.000</Text>
+        <Text fontWeight="medium">
+          Rp. {(price * quantity).toLocaleString()}
+        </Text>
       </GridItem>
       <GridItem w="100%" display="flex" alignItems="center">
         <IconButton colorScheme="red" icon={<Icon as={IoMdClose} />} />
