@@ -27,6 +27,11 @@ export const cartReducer = (state = initial_state, action) => {
       ...state,
       items,
     };
+  } else if (action.type === "GET_USER_CART") {
+    return {
+      ...state,
+      items: action.payload,
+    };
   } else if (action.type === "EMPTY_CART") {
     return init_state;
   }
