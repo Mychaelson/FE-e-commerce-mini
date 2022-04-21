@@ -6,6 +6,8 @@ const CartPage = () => {
     <Container minW={"7xl"} paddingTop={12}>
       <Heading>Shopping Cart (3 items)</Heading>
       <CartItem />
+      <CartItem />
+      <CartItem />
     </Container>
   );
 };
