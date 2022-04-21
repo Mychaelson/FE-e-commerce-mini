@@ -6,11 +6,11 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
   return (
-    // <Provider store={store}>
-    <ChakraProvider>
-      <Component {...pageProps} />
-    </ChakraProvider>
-    // </Provider>
+    <Provider store={store}>
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </Provider>
   );
 }
 
