@@ -26,14 +26,17 @@ const CartItem = ({ imageUrl, productName, price, quantity }) => {
       <GridItem w="100%" colSpan={2} display="flex" alignItems="center">
         <Flex direction="column">
           <Text fontWeight="medium">{productName || "product"}</Text>
-          {/* <Text color="gray.600" fontSize="sm">
-            Category
-          </Text> */}
         </Flex>
       </GridItem>
 
       <GridItem w="100%" display="flex" alignItems="center">
-        <Input h={12} w={24} textAlign="center" type="number" value={1} />
+        <Input
+          h={12}
+          w={24}
+          textAlign="center"
+          type="number"
+          value={quantity}
+        />
       </GridItem>
       <GridItem
         w="100%"

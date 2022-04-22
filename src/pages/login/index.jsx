@@ -1,17 +1,12 @@
 import {
   Box,
   Button,
-  Center,
   Flex,
   FormControl,
   FormHelperText,
   FormLabel,
   Heading,
-  Icon,
-  Image,
   Input,
-  InputGroup,
-  InputRightElement,
   Text,
   useToast,
 } from "@chakra-ui/react";
@@ -22,7 +17,6 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { userLogin } from "../../redux/actions/user";
 import Link from "next/link";
-import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -57,7 +51,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (userSelector.id) {
-      router.push("/sign-up");
+      router.push("/cart");
     }
   });
   return (
@@ -72,16 +66,29 @@ const LoginPage = () => {
           width="700px"
           m={1}
         />
-        <Flex flexDir="column"  position="absolute" color="white" top={60}>
+        <Flex flexDir="column" position="absolute" color="white" top={60}>
           <Text fontSize="5xl">New Here?</Text>
-          <Box display="flex" flexDir="column" justifyContent="center" alignItems="center">
-
-          <Text fontSize="2xl">Sign up here so you won't miss out our great products!</Text>
-        <Link href="/sign-up">
-          <Button bgColor="white" w="100px" ml={3} color="black" borderRadius="20px" mt={4}>
-            Sign Up
-          </Button>
-        </Link>
+          <Box
+            display="flex"
+            flexDir="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Text fontSize="2xl">
+              Sign up here so you won't miss out our great products!
+            </Text>
+            <Link href="/sign-up">
+              <Button
+                bgColor="white"
+                w="100px"
+                ml={3}
+                color="black"
+                borderRadius="20px"
+                mt={4}
+              >
+                Sign Up
+              </Button>
+            </Link>
           </Box>
         </Flex>
       </Box>
@@ -109,52 +116,34 @@ const LoginPage = () => {
           <FormControl isInvalid={formik.errors.username}>
             <FormLabel>Username</FormLabel>
             <Input id="inputUsername" name="username" onChange={inputHandler} />
-
             <FormHelperText>{formik.errors.username}</FormHelperText>
           </FormControl>
           {/* PASSWORD INPUT */}
           <FormControl isInvalid={formik.errors.password}>
             <FormLabel>Password</FormLabel>
-            <InputGroup>
-              <Input
-                id="inputPassword"
-                name="password"
-                onChange={inputHandler}
-                type={passwordVisible ? "text" : "password"}
-              />
-              <InputRightElement
-                children={
-                  <Icon
-                    fontSize="lg"
-                    onClick={() => setPasswordVisible(!passwordVisible)}
-                    as={passwordVisible ? IoMdEyeOff : IoMdEye}
-                    sx={{ _hover: { cursor: "pointer" } }}
-                  />
-                }
-              />
-            </InputGroup>
-
+            <Input id="inputPassword" name="password" onChange={inputHandler} />
             <FormHelperText>{formik.errors.password}</FormHelperText>
           </FormControl>
         </Box>
         <Flex mb={3}>
           <Button
-            // colorScheme="blackAlpha"
+            colorScheme="green"
             w="100px"
             onClick={formik.handleSubmit}
             disabled={formik.isSubmitting}
-            bgColor="black"
-            color="white"
           >
             Login
           </Button>
+          <Link href="/sign-up">
+            <Button colorScheme="blue" w="100px" ml={3}>
+              Sign Up
+            </Button>
+          </Link>
         </Flex>
       </Box>
     </Flex>
     // </Center>
-
   );
 };
 
 export default LoginPage;
-

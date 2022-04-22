@@ -1,7 +1,7 @@
 const initial_state = {
-  id: 0,
-  username: "",
-  email: "",
+  id: 2,
+  username: "budi",
+  email: "budi@mail.com",
 };
 
 const userReducer = (state = initial_state, action) => {
@@ -10,7 +10,7 @@ const userReducer = (state = initial_state, action) => {
       ...state,
       username: action.payload.username,
       email: action.payload.email,
-      id: action.payload.id
+      id: action.payload.id,
     };
   } else if (action.type === "USER_LOGOUT") {
     return initial_state;

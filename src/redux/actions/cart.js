@@ -3,9 +3,9 @@ import axiosInstance from "../../lib/api";
 export const fetchUserCart = () => {
   return async (dispatch, getState) => {
     try {
-      const res = await axiosInstance.get(`/carts`, {
+      const res = await axiosInstance.get(`/cart`, {
         params: {
-          userId: getState().auth.id,
+          userId: getState().user.id,
           _expand: "product",
         },
       });

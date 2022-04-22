@@ -17,20 +17,25 @@ const CartPage = () => {
 
   // put in the navbar
   // fetch the cart directly after the user logged in
+  console.log(userSelector.id);
   useEffect(() => {
     if (userSelector.id) {
-      fetchUserCart();
+      dispatch(fetchUserCart());
     }
   }, [userSelector.id]);
 
+  console.log(cartSelector?.items?.result);
+
   const renderCartItems = () => {
-    return cartSelector?.items?.map((item, idx) => {
-      <CartItem
-        imageUrl={item?.Product?.image_url}
-        productName={item?.Product?.product_name}
-        price={item?.Product?.price}
-        quantity={item?.quantity}
-      />;
+    return cartSelector?.items?.result?.map((item, idx) => {
+      return (
+        <CartItem
+          imageUrl={item?.Product?.image_url}
+          productName={item?.Product?.product_name}
+          price={item?.Product?.price}
+          quantity={item?.quantity}
+        />
+      );
     });
   };
 
@@ -38,9 +43,9 @@ const CartPage = () => {
     <Container minW={"7xl"} paddingTop={12}>
       <Heading>Shopping Cart (3 items)</Heading>
       {renderCartItems()}
+      {/* <CartItem />
       <CartItem />
-      <CartItem />
-      <CartItem />
+      <CartItem /> */}
     </Container>
   );
 };
