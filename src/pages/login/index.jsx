@@ -87,6 +87,7 @@ const LoginPage = () => {
       </Box>
 
       {/* RIGHT SIDE COMPONENTS */}
+
       <Box
         border="1px solid black"
         borderRadius="5px"
@@ -108,6 +109,7 @@ const LoginPage = () => {
           <FormControl isInvalid={formik.errors.username}>
             <FormLabel>Username</FormLabel>
             <Input id="inputUsername" name="username" onChange={inputHandler} />
+
             <FormHelperText>{formik.errors.username}</FormHelperText>
           </FormControl>
           {/* PASSWORD INPUT */}
@@ -131,6 +133,7 @@ const LoginPage = () => {
                 }
               />
             </InputGroup>
+
             <FormHelperText>{formik.errors.password}</FormHelperText>
           </FormControl>
         </Box>
@@ -149,6 +152,7 @@ const LoginPage = () => {
       </Box>
     </Flex>
     // </Center>
+
   );
 };
 
