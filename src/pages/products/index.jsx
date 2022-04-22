@@ -27,7 +27,6 @@ const productPage = () => {
   const [sortInput, setSortInput] = useState("");
   const [sortBy, setSortBy] = useState("");
   const [sortDir, setSortDir] = useState("");
-
   const maxPostPerPage = 4;
 
   const fetchProduct = async () => {
@@ -58,9 +57,9 @@ const productPage = () => {
 
   const sortInputHandler = (event) => {
     const { value } = event.target;
-
     setSortInput(value);
-  };
+  }
+
 
   const searchButton = () => {
     setSearchValue(searchInput);
