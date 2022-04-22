@@ -1,7 +1,7 @@
 const initial_state = {
-  id: 2,
-  username: "budi",
-  email: "budi@mail.com",
+  id: 0,
+  username: "",
+  email: "",
 };
 
 const userReducer = (state = initial_state, action) => {
