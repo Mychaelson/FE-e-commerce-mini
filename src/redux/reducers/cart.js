@@ -14,7 +14,7 @@ export const cartReducer = (state = initial_state, action) => {
   } else if (action.type === "DELETE_ITEM") {
     // console.log(state.items.result);
     const items = [...state.items];
-    console.log(action.payload);
+    // console.log(action.payload);
     items.splice(action.payload, 1);
 
     return {

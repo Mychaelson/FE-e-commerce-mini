@@ -17,7 +17,6 @@ const CartPage = () => {
 
   // put in the navbar
   // fetch the cart directly after the user logged in
-  console.log(userSelector.id);
   useEffect(() => {
     if (userSelector.id) {
       dispatch(fetchUserCart());
