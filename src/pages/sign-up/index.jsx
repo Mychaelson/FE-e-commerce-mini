@@ -12,6 +12,9 @@ import {
   Input,
   Text,
   useToast,
+  Icon,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -113,7 +116,24 @@ const SignUpPage = () => {
           {/* PASSWORD INPUT */}
           <FormControl isInvalid={formik.errors.password}>
             <FormLabel>Password</FormLabel>
-            <Input id="inputPassword" name="password" onChange={inputHandler} />
+            <InputGroup>
+              <Input
+                id="inputPassword"
+                name="password"
+                onChange={inputHandler}
+                type={passwordVisible ? "text" : "password"}
+              />
+              <InputRightElement
+                children={
+                  <Icon
+                    fontSize="lg"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                    as={passwordVisible ? IoMdEyeOff : IoMdEye}
+                    sx={{ _hover: { cursor: "pointer" } }}
+                  />
+                }
+              />
+            </InputGroup>
             <FormHelperText>{formik.errors.password}</FormHelperText>
           </FormControl>
         </Box>
