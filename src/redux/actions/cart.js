@@ -5,7 +5,7 @@ export const fetchUserCart = () => {
     try {
       const res = await axiosInstance.get(`/cart`, {
         params: {
-          userId: getState().user.id,
+          user_id: getState().user.id,
           _expand: "product",
         },
       });

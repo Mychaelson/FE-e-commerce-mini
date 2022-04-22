@@ -6,7 +6,6 @@ import Nav from "../component/nav";
 import { Provider } from "react-redux";
 import AuthProvider from "../component/AuthProvider";
 
-
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
@@ -17,7 +16,6 @@ function MyApp({ Component, pageProps }) {
           <Nav />
           <Component {...pageProps} />
         </AuthProvider>
-
       </ChakraProvider>
     </Provider>
   );
