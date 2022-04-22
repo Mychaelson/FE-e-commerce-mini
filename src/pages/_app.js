@@ -5,7 +5,6 @@ import store from "../redux/store";
 import Nav from "../component/nav";
 import { Provider } from "react-redux";
 import AuthProvider from "../component/AuthProvider";
-import Nav from "../component/nav";
 
 
 function MyApp({ Component, pageProps }) {
