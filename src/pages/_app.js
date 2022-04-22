@@ -9,6 +9,7 @@ import Nav from "../component/nav";
 
 
 
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
