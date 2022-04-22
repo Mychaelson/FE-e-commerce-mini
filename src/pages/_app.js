@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import store from "../redux/store";
 import { Provider } from "react-redux";
 import AuthProvider from "../component/AuthProvider";
+import Nav from "../component/nav";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -12,6 +13,7 @@ function MyApp({ Component, pageProps }) {
     <Provider store={store}>
       <ChakraProvider>
         <AuthProvider>
+          <Nav />
           <Component {...pageProps} />
         </AuthProvider>
       </ChakraProvider>
