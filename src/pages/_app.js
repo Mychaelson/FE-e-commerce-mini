@@ -1,8 +1,9 @@
 import "../styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { Provider } from "react-redux";
 import store from "../redux/store";
+import { Provider } from "react-redux";
+import AuthProvider from "../component/AuthProvider";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -10,7 +11,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <ChakraProvider>
-        <Component {...pageProps} />
+        <AuthProvider>
+          <Component {...pageProps} />
+        </AuthProvider>
       </ChakraProvider>
     </Provider>
   );
