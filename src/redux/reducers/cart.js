@@ -4,7 +4,7 @@ const initial_state = {
 
 export const cartReducer = (state = initial_state, action) => {
   if (action.type === "ADD_TO_CART") {
-    const newItem = [...state];
+    const newItem = [...state.items];
     newItem.push(action.payload);
 
     return {
@@ -12,8 +12,10 @@ export const cartReducer = (state = initial_state, action) => {
       items: newItem,
     };
   } else if (action.type === "DELETE_ITEM") {
-    const items = [...state];
-    items.splice(action.payload);
+    // console.log(state.items.result);
+    const items = [...state.items];
+    console.log(action.payload);
+    items.splice(action.payload, 1);
 
     return {
       ...state,

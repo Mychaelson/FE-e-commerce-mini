@@ -27,13 +27,15 @@ const CartPage = () => {
   console.log(cartSelector?.items?.result);
 
   const renderCartItems = () => {
-    return cartSelector?.items?.result?.map((item, idx) => {
+    return cartSelector?.items?.map((item, idx) => {
       return (
         <CartItem
           imageUrl={item?.Product?.image_url}
           productName={item?.Product?.product_name}
           price={item?.Product?.price}
           quantity={item?.quantity}
+          id={item?.id}
+          cartIndex={idx}
         />
       );
     });

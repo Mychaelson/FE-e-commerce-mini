@@ -10,8 +10,31 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import axiosInstance from "../configs/api";
 
-const CartItem = ({ imageUrl, productName, price, quantity }) => {
+const CartItem = ({
+  imageUrl,
+  productName,
+  price,
+  quantity,
+  id,
+  cartIndex,
+}) => {
+  const dispatch = useDispatch();
+
+  const deleteItemCart = () => {
+    try {
+      axiosInstance.delete(`/cart/${id}`);
+      dispatch({
+        type: "DELETE_ITEM",
+        payload: cartIndex,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Grid templateColumns="repeat(7, 1fr)" my={4}>
       <GridItem w="100%" display="flex" alignItems="center">
@@ -50,7 +73,11 @@ const CartItem = ({ imageUrl, productName, price, quantity }) => {
         </Text>
       </GridItem>
       <GridItem w="100%" display="flex" alignItems="center">
-        <IconButton colorScheme="red" icon={<Icon as={IoMdClose} />} />
+        <IconButton
+          onClick={deleteItemCart}
+          colorScheme="red"
+          icon={<Icon as={IoMdClose} />}
+        />
       </GridItem>
     </Grid>
   );

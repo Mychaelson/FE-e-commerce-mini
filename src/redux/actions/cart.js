@@ -12,7 +12,7 @@ export const fetchUserCart = () => {
 
       dispatch({
         type: "GET_USER_CART",
-        payload: res.data,
+        payload: res.data.result,
       });
     } catch (err) {
       console.log(err);
