@@ -24,8 +24,6 @@ const CartPage = () => {
     }
   }, [userSelector.id]);
 
-  console.log(cartSelector?.items?.result);
-
   const renderCartItems = () => {
     return cartSelector?.items?.map((item, idx) => {
       return (
@@ -43,11 +41,11 @@ const CartPage = () => {
 
   return (
     <Container minW={"7xl"} paddingTop={12}>
-      <Heading>Shopping Cart (3 items)</Heading>
+      <Heading>
+        Shopping Cart ({cartSelector?.items?.length}{" "}
+        {cartSelector?.items?.length > 1 ? "items" : "item"})
+      </Heading>
       {renderCartItems()}
-      {/* <CartItem />
-      <CartItem />
-      <CartItem /> */}
     </Container>
   );
 };
