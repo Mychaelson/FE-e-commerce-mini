@@ -13,8 +13,6 @@ import {
   Text,
   useToast,
   Icon,
-  InputGroup,
-  InputRightElement,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
