@@ -17,6 +17,7 @@ import {
   ListItem,
   Divider,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { MdLocalShipping } from "react-icons/md";
 import axiosInstance from "../../configs/api";
 
@@ -33,16 +34,7 @@ const ProductDetail = ({ productDetailData }) => {
           <Image
             rounded={"md"}
             alt={"product image"}
-            src={productDetailData.image_url}
-            fit={"cover"}
-            align={"center"}
-            w={"100%"}
-            h={{ base: "100%", sm: "500px", lg: "500px" }}
-          />
-          <Image
-            rounded={"md"}
-            alt={"product image"}
-            src={productDetailData.image_url}
+            src={productDetailData?.image_url}
             fit={"cover"}
             align={"center"}
             w={"100%"}
@@ -56,7 +48,7 @@ const ProductDetail = ({ productDetailData }) => {
               fontWeight={600}
               fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
             >
-              {productDetailData.product_name}
+              {productDetailData?.product_name}
             </Heading>
             <Text
               color={useColorModeValue("gray.900", "gray.400")}
@@ -64,7 +56,7 @@ const ProductDetail = ({ productDetailData }) => {
               fontSize={"2xl"}
               mt={"1"}
             >
-              Rp.{productDetailData.price}
+              Rp.{productDetailData?.price}
             </Text>
           </Box>
 
@@ -83,7 +75,7 @@ const ProductDetail = ({ productDetailData }) => {
                 fontSize={"2xl"}
                 fontWeight={"300"}
               >
-                stock: {productDetailData.stock}
+                stock: {productDetailData?.stock}
               </Text>
               <Text
                 fontSize={{ base: "16px", lg: "18px" }}
@@ -95,7 +87,7 @@ const ProductDetail = ({ productDetailData }) => {
                 Description
               </Text>
               <Divider />
-              <Text fontSize={"lg"}>{productDetailData.description}</Text>
+              <Text fontSize={"lg"}>{productDetailData?.description}</Text>
             </Stack>
           </Stack>
 
@@ -129,7 +121,9 @@ const ProductDetail = ({ productDetailData }) => {
 export const getServerSideProps = async (context) => {
   try {
     const productId = context.query.id;
-    const res = await axiosInstance.get(`/products/${productId}`);
+    const res = await axios.get(
+      `http://localhost:2000/products/details/${productId}`
+    );
 
     return {
       props: {
@@ -137,7 +131,12 @@ export const getServerSideProps = async (context) => {
       },
     };
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data);
+    return {
+      props: {
+        productDetailData: null,
+      },
+    };
   }
 };
 
