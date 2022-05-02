@@ -16,13 +16,42 @@ import {
   List,
   ListItem,
   Divider,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { MdLocalShipping } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 import axiosInstance from "../../configs/api";
+import { fetchUserCart } from "../../redux/actions/cart";
 
 const ProductDetail = ({ productDetailData }) => {
-  console.log(productDetailData);
+  const userSelector = useSelector((state) => {
+    return state.user;
+  });
+  const dispatch = useDispatch();
+  const toast = useToast();
+
+  const addToCartBtnHandler = async () => {
+    try {
+      const productAddedToCart = {
+        product_id: productDetailData.id,
+        user_id: userSelector.id,
+      };
+      await axiosInstance.post(`/cart`, productAddedToCart);
+
+      dispatch(fetchUserCart());
+
+      toast({
+        title: "Item added to cart",
+        duration: 2000,
+        isClosable: true,
+        status: "success",
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Container maxW={"7xl"}>
       <SimpleGrid
@@ -104,6 +133,7 @@ const ProductDetail = ({ productDetailData }) => {
               transform: "translateY(2px)",
               boxShadow: "lg",
             }}
+            onClick={addToCartBtnHandler}
           >
             Add to cart
           </Button>
