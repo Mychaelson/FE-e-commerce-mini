@@ -58,8 +58,7 @@ const productPage = () => {
   const sortInputHandler = (event) => {
     const { value } = event.target;
     setSortInput(value);
-  }
-
+  };
 
   const searchButton = () => {
     setSearchValue(searchInput);
